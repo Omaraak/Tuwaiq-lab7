@@ -1,5 +1,6 @@
 package com.example.lab7.Model;
 
+import jakarta.validation.constraints.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 
@@ -7,11 +8,21 @@ import java.util.ArrayList;
 
 @Data
 public class Instructor {
+    @NotEmpty
+    @Pattern(regexp = "(\\d){2}")
     private String id;
+    @NotEmpty
+    @Size(min = 3, max = 10)
     private String name;
+    @NotNull
+    @Positive
     private int numberOfPublishedPapers;
+    @Pattern(regexp = "([AB])")
     private String position;
+    @NotNull
     private ArrayList<Course> coursesTeached = new ArrayList<>();
+    @NotNull
+    @Positive
     private double salary;
 
     public Instructor(String id, String name, int numberOfPublishedPapers, String position, double salary) {
